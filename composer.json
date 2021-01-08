@@ -1,0 +1,33 @@
+{
+  "name": "nickfairchild/kynda-framework",
+  "description": "Kynda Framework",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Nick Fairchild",
+      "email": "nick.fairchild@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.4 | ^8.0",
+    "ext-dom": "*",
+    "ext-json": "*",
+    "illuminate/filesystem": "^8.20",
+    "illuminate/support": "^8.14",
+    "psr/container": "^1.0",
+    "symfony/finder": "^5.2",
+    "symfony/var-dumper": "^5.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Kynda\\": "src/"
+    }
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "optimize-autoloader": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
