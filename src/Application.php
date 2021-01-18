@@ -21,10 +21,10 @@ class Application extends Container implements ApplicationContract
 
     protected array $loadedProviders = [];
 
-    public function __construct(?string $basePath = null)
+    public function __construct(?string $themePath = null)
     {
-        if (! is_null($basePath)) {
-            $this->setBasePath($basePath);
+        if (! is_null($themePath)) {
+            $this->setBasePath($themePath);
         }
 
         $this->registerBaseBindings();
@@ -65,11 +65,12 @@ class Application extends Container implements ApplicationContract
 
     protected function bindPathsInContainer(): void
     {
-        $this->instance('path.base', $this->basePath());
+        $this->instance('path.theme', $this->themePath());
         $this->instance('path.config', $this->configPath());
+        $this->instance('path.base', $this->basePath());
     }
 
-    public function basePath(string $path = ''): string
+    public function themePath(string $path = ''): string
     {
         return $this->basePath.($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
@@ -77,6 +78,10 @@ class Application extends Container implements ApplicationContract
     public function configPath(string $path = ''): string
     {
         return $this->basePath.DIRECTORY_SEPARATOR.'config'.($path ? DIRECTORY_SEPARATOR.$path : $path);
+    }
+
+    public function basePath(string $path = ''): string {
+        return dirname($this->basePath, 3).($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
 
     public function registerConfiguredProviders()
