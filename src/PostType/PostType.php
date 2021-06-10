@@ -47,6 +47,8 @@ class PostType
 
     protected function setDefaultArguments($singular, $plural = null): array
     {
+        $singular = str_replace(['-', '_'], ' ', $singular);
+
         if (is_null($plural)) {
             $plural = Str::plural($singular);
         }
